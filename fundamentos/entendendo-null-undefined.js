@@ -1,11 +1,11 @@
 // Atribuição por referência
 const a = {name: "Jardiel"}
-console.log(a);
+console.log('Objeto a:', a);
 
 const b = a;
 b.name = "Jardiel Sousa"
 
-console.log(a);
+console.log('Objeto a: ', a);
 
 // Atribuição por valor
 console.log();
