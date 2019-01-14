@@ -28,3 +28,4 @@ console.log(aprovados[2])
 aprovados = ["Nome 01", "Nome 02", "Nome 03"]
 aprovados.splice(1, 1)
 console.log(aprovados)
+
