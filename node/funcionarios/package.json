@@ -4,6 +4,8 @@
   "description": "Exemplo de criação de arquivo package.json",
   "main": "index.js",
   "scripts": {
+    "start": "nodemom",
+    "dev": "nodemom",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jardiel",
