@@ -2,18 +2,27 @@
 <html>
 
 <head>
-    <meta charset='UTF-8'>
-    <title>Modificando HTML #02</title>
-    <link rel='stylesheet' href='css/estilo.css'>
+	<meta charset='UTF-8'>
+	<title>Modificando HTML #02</title>
+	<link rel='stylesheet' href='css/estilo.css'>
 </head>
 
 <body class='conteudo exercicio'>
-    <div>
-        <p>Texto Inicial</p>
-    </div>
-    <script>
-        // ...
-    </script>
+	<div>
+		<p>Texto Inicial</p>
+	</div>
+	<script>
+		const div = document.querySelector("div")
+		div.innerHTML = "Texto alterado"
+		// div.outerHTML = "Texto alterado"
+		div.insertAdjacentHTML("beforebegin", "<p>Antes inicio</p>")
+		div.insertAdjacentHTML("afterbegin", "<p>Depois inicio</p>")
+		div.insertAdjacentHTML("beforeend", "<p>Antes fim</p>")
+		div.insertAdjacentHTML("afterend", "<p>Depois fim</p>")
+
+		// Somente texto (sem tags)
+		console.log(div.innerText)
+	</script>
 </body>
 
 </html>
