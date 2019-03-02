@@ -17,7 +17,8 @@
       const item = e.target
       item.style.cursor = "move"
       if (e.buttons) {
-        e.target.style.top = `${e.clientY - (item.clientHeight / 2)}px`
+        item.style.top = `${e.clientY - (item.clientHeight / 2)}px`
+        item.style.left = `${e.clientX - (item.clientHeight / 2)}px`
       }
     }
   </script>
