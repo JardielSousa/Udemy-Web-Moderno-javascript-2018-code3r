@@ -2,21 +2,42 @@
 <html>
 
 <head>
-    <meta charset='UTF-8'>
-    <title>Modificando HTML #02</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-    <script src='js/jquery.js'></script>
+  <meta charset='UTF-8'>
+  <title>Modificando HTML #02</title>
+  <link rel='stylesheet' href='css/estilo.css'>
+  <script src='js/jquery.js'></script>
 </head>
 
 <body class='conteudo exercicio'>
-    <h1>Modificando HTML #02</h1>
-    <div id='div1'>1</div>
-    <div id='div2'>2</div>
-    <div id='div3'>3</div>
-    <p class='numero'>4</p>
-    <p class='numero'>5</p>
+  <h1>Modificando HTML #02</h1>
+  <div id='div1'>1</div>
+  <div id='div2'>2</div>
+  <div id='div3'>3</div>
+  <p class='numero'>4</p>
+  <p class='numero'>5</p>
 
-    <script>
-        // ...
-    </script>
+  <script>
+    jQuery("#div1").append(", 2")
+    jQuery("#div1").prepend("0, ")
+
+    jQuery("<span>, 3</span>").appendTo("#div1")
+    jQuery("<span>-1, </span>").prependTo("#div1")
+
+    jQuery("#div2").before("<p>Antes 2</p>")
+    jQuery("#div2").after("<p>Depois 2</p>")
+
+    jQuery("<p>Antes 3</p>").insertBefore("#div3")
+    jQuery("<p>Depois 3</p>").insertAfter("#div3")
+
+    // jQuery("p.numero").wrap("<div>")
+    jQuery("p.numero").wrapAll("<div id='div4'>")
+    jQuery("#div4").empty()
+    jQuery("#div3, #div4").prev().remove()
+
+    // jQuery("<div>Substituto</div>").replaceAll("body > p")
+    // jQuery("body > p").replaceWith("<div>Substituto</div>")
+    jQuery("body > p").replaceWith(function() {
+      return jQuery("<div>").html(jQuery(this).html())
+    })
+  </script>
 </body>
