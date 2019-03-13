@@ -2,19 +2,34 @@
 <html>
 
 <head>
-    <meta charset='UTF-8'>
-    <title>Manipulando CSS</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-    <script src='js/jquery.js'></script>
+  <meta charset='UTF-8'>
+  <title>Manipulando CSS</title>
+  <link rel='stylesheet' href='css/estilo.css'>
+  <script src='js/jquery.js'></script>
 </head>
 
 <body class='conteudo exercicio'>
-    <h1>Manipulando CSS</h1>
-    <div id='div1'>1</div>
-    <div id='div2'>2</div>
-    <div id='div3'>3</div>
-    <div id='resultado'></div>
-    <script>
-        // ...
-    </script>
+  <h1>Manipulando CSS</h1>
+  <div id='div1'>1</div>
+  <div id='div2'>2</div>
+  <div id='resultado'></div>
+  <script>
+    const fonte = jQuery("#div1").css("font-family")
+    jQuery("#resultado").append(`Fonte é ${fonte}`)
+
+    jQuery("#div1").css("font-size", "3em")
+    jQuery("#div1").css({"font-size": "3.5em", "color": "yellow"})
+    jQuery("#div1").css("font-size", function () {
+      return `${2 * 2}em`
+    })
+
+    jQuery("#div2").addClass("destaque")
+
+    const temClasse = jQuery("#div2").hasClass("destaque")
+    jQuery("#resultado").append(`<br>Tem classe ? ${temClasse}`)
+
+    jQuery("#div2").removeClass("destaque")
+    jQuery("#div2").toggleClass("destaque")
+    jQuery("#div2").toggleClass("destaque")
+  </script>
 </body>
