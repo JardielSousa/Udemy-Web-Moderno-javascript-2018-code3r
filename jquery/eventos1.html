@@ -2,24 +2,51 @@
 <html>
 
 <head>
-    <meta charset='UTF-8'>
-    <title>Eventos #01</title>
-    <link rel='stylesheet' href='css/estilo.css'>
-    <script src='js/jquery.js'></script>
-    <style>
-        input {
+  <meta charset='UTF-8'>
+  <title>Eventos #01</title>
+  <link rel='stylesheet' href='css/estilo.css'>
+  <script src='js/jquery.js'></script>
+  <style>
+    input {
             font-size: 2em;
         }
     </style>
 </head>
 
 <body class='conteudo exercicio'>
-    <h1>Eventos #01</h1>
-    <div id='posicao'></div>
-    <div id='cliques'>Cliques: 0</div>
-    <input type="text" placeholder="Cor de Background">
+  <h1>Eventos #01</h1>
+  <div id='posicao'></div>
+  <div id='cliques'>Cliques: 0</div>
+  <input type="text" placeholder="Cor de Background">
 
-    <script>
-        // ...
-    </script>
+  <script>
+    function mostrarPosicaMouse(e) {
+      jQuery("#posicao").html(`x: ${e.clientX} y: ${e.clientY}`)
+    }
+    
+    jQuery("body").on("mousemove", mostrarPosicaMouse)
+
+    jQuery("#posicao").mouseover(e => {
+      jQuery("body").off("mousemove", mostrarPosicaMouse)
+    })
+
+    jQuery("#posicao").mouseleave(e => {
+      jQuery("body").mousemove(mostrarPosicaMouse)
+    })
+
+    let cliques = 0
+    jQuery("body").click(e => {
+      jQuery("#cliques").html(`Cliques: ${++cliques}`)
+    })
+
+    const backgroundOriginal = jQuery("body").css("background-color")
+    jQuery("input").keyup(function (e) {
+      const valor = jQuery(this).val()
+      if (valor.match(/#[\da-fA-F]{3,6}/)) {
+        jQuery("body").css("background-color", valor)
+      } else {
+        jQuery("body").css("background-color", backgroundOriginal)
+      }
+    })
+  </script>
 </body>
