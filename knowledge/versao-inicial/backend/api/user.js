@@ -24,8 +24,8 @@ module.exports = app => {
         notExistsOrError(userFromDB, "Usuário já cadastrado")
       }
 
-    } catch (msg) {
-      return res.status(400).send(msg)
+    } catch (error) {
+      return res.status(400).send(error)
     }
 
     user.password = encryptPassword(user.password)
@@ -35,6 +35,7 @@ module.exports = app => {
       app.db("users")
         .update(user)
         .where({ id: user.id })
+        .whereNull("deleteAt")
         .then(_ => res.status(204).send())
         .catch(err => res.status(500).send(err))
     } else {
@@ -48,6 +49,7 @@ module.exports = app => {
   const get = (req, res) => {
     app.db("users")
         .select("id", "name", "email", "admin")
+        .whereNull("deleteAt")
         .then(users => res.json(users))
         .catch(err => res.status(500).send(err))
   }
@@ -56,10 +58,25 @@ module.exports = app => {
     app.db("users")
         .select("id", "name", "email", "admin")
         .where({ id: req.params.id})
+        .whereNull("deleteAt")
         .first()
         .then(user => res.json(user))
         .catch(err => res.status(500).send(err))
   }
 
-  return { save, get, getById }
+  const remove = async (req, res) => {
+    try {
+      const articles = await app.db("articles").where({ userId: req.params.id })
+      notExistsOrError(articles, "Usuário possui artigos.")
+
+      const rowsUpdated = await app.db("users").update({ deletedAt: new Date() }).where({ id: req.params.id })
+      existsOrError(rowsUpdated, "Usuário não foi encontrado.")
+
+      res.status(204).send()
+    } catch (error) {
+      res.status(400).send(error)
+    }
+  }
+
+  return { save, get, getById, remove }
 }
