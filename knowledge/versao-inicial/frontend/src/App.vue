@@ -17,7 +17,7 @@
 	export default {
 		name: "App",
 		components: { Header, Menu, Content, Footer },
-		computed: mapState(["isMenuVisible"])
+		computed: mapState(["isMenuVisible", "user"])
 	}
 </script>
 
