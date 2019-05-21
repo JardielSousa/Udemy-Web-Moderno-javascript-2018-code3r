@@ -18,7 +18,7 @@ module.exports = app => {
       return res.status(401).send("Email/Senha inválidos")
     }
 
-    const now = Math.floor(Date.now / 1000)
+    const now = Math.floor(Date.now() / 1000)
     const payload = {
       id: user.id,
       name: user.name,

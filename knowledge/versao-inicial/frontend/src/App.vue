@@ -46,7 +46,7 @@
 				if (res.data) {
 					this.$store.commit("setUser", userData)
 					
-					if(this.$mq === "xs" || this.$mq === "sm") {
+					if (this.$mq === "xs" || this.$mq === "sm") {
 						this.$store.commit("toggleMenu", false)
 					}
 				} else {
